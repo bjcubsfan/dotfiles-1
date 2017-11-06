@@ -23,6 +23,7 @@ repos=(
   sheerun/vim-polyglot
   statico/vim-inform7
   tomasr/molokai
+  myusuf3/numbers.vim
   tpope/vim-commentary
   tpope/vim-endwise
   tpope/vim-eunuch
