@@ -305,9 +305,6 @@ if !has('gui_running')
 endif
 syntax on
 
-let g:solarized_italic=0
-:highlight LineNr ctermfg=585858
-
 " Window splits & ruler are too bright, so change to white on grey (non-GUI)
 highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
 highlight StatusLineTerm   cterm=NONE ctermbg=blue ctermfg=white
@@ -334,8 +331,6 @@ highlight clear FoldColumn
 highlight def link FoldColumn Ignore
 highlight clear Folded
 highlight link Folded Ignore
-highlight clear LineNr
-highlight! def link LineNr Ignore
 
 " Custom search colors
 highlight clear Search
@@ -367,6 +362,10 @@ highlight link markdownItalic Statement
 highlight link markdownCode Delimiter
 highlight link markdownCodeBlock Delimiter
 highlight link markdownListMarker Todo
+
+" Choose better colors for line numbers
+highlight CursorLineNr     cterm=None ctermbg=262626 ctermfg=245
+highlight LineNr           cterm=None ctermbg=262626 ctermfg=240
 
 " Custom mode for distraction-free editing
 function! ProseMode()

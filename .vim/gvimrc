@@ -31,3 +31,4 @@ endif
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_italic=0  " No italics, messes up ascii art
