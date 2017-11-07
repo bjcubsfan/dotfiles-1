@@ -143,6 +143,7 @@ set shiftwidth=4            " Number of spaces to shift for autoindent or >,<
 set shortmess+=A            " Don't bother me when a swapfile exists
 set showbreak=              " Show for lines that have been wrapped, like Emacs
 set showmatch               " Hilight matching braces/parens/etc.
+set showcmd                 " Show what is being typed in normal mode
 set sidescrolloff=3         " Keep cursor away from this many chars left/right
 set smartcase               " Lets you search for ALL CAPS
 set softtabstop=4           " Spaces 'feel' like tabs
@@ -168,6 +169,24 @@ command! CLEAN retab | TEOL
 
 " Close all buffers except this one
 command! BufCloseOthers %bd|e#
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+  %s/\s*$//
+  ''
+:endfunction
+
+" Map the F2 key to the clean white space command
+map <F2> :call TrimWhiteSpace()<CR>
+map! <F2> :call TrimWhiteSpace()<CR>
+
+" Insert date stamps
+nmap <F3> a<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
+imap <F3> <C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR>
+
+" Insert ipython line
+nmap <F7> Oimport IPython; IPython.embed()<Esc>
+imap <F7> import IPython; IPython.embed()
 
 " ----------------------------------------------------------------------------
 " PLUGIN SETTINGS
@@ -286,6 +305,9 @@ if !has('gui_running')
   endif
 endif
 syntax on
+
+let g:solarized_italic=0
+:highlight LineNr ctermfg=585858
 
 " Window splits & ruler are too bright, so change to white on grey (non-GUI)
 highlight StatusLine       cterm=NONE ctermbg=blue ctermfg=white
@@ -415,28 +437,3 @@ endif
 
 " Some plugin seems to search for something at startup, so this fixes that.
 silent! nohlsearch
-
-" vim:set tw=100:
-
-" Removes trailing spaces
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-:endfunction
-
-" Map the F2 key to the clean white space command
-map <F2> :call TrimWhiteSpace()<CR>
-map! <F2> :call TrimWhiteSpace()<CR>
-
-" Insert date stamps
-nmap <F3> a<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
-imap <F3> <C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR>
-
-" Insert ipython line
-nmap <F7> Oimport IPython; IPython.embed()<Esc>
-imap <F7> import IPython; IPython.embed()
-
-let g:solarized_italic=0
-:highlight LineNr ctermfg=585858
-
-set showcmd
