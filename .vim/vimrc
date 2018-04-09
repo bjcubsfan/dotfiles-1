@@ -62,14 +62,10 @@ nmap <C-l> <C-W>l
 
 " Search for the word under the cursor in the current directory
 nmap <M-k>    mo:Ack! "\b<cword>\b" <CR>
-nmap <Esc>k   mo:Ack! "\b<cword>\b" <CR>
-nmap ˚        mo:Ack! "\b<cword>\b" <CR>
 nmap <M-S-k>  mo:Ggrep! "\b<cword>\b" <CR>
-nmap <Esc>K   mo:Ggrep! "\b<cword>\b" <CR>
 
 " Alt-W to delete a buffer and remove it from the list but keep the window via bufkill.vim
-nmap <Esc>w :BD<CR>
-nmap ∑      :BD<CR>
+nmap <M-w>      :BD<CR>
 
 " Quickly fix spelling errors choosing the first result
 nmap <Leader>z z=1<CR><CR>
@@ -235,6 +231,15 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
+let g:ale_linters = {
+\   'python': ['flake8', 'isort'],
+\ }
+let g:ale_fixers = {
+\   'python': ['isort'],
+\ }
+let g:ale_python_isort_executable = 'isort'
+let g:ale_history_log_output = 1
+
 
 " Lightline
 let g:lightline = {
